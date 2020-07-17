@@ -65,8 +65,8 @@ func GetType(value interface{}) string {
 	return TUnknown
 }
 
-//
-func ToType(src interface{}, dstType string) interface{}{
+// Convert src to target type.
+func ToType(src interface{}, dstType string) interface{} {
 	switch GetType(src) {
 	case TInt:
 		switch dstType { // int 转 int
@@ -188,12 +188,18 @@ func ToType(src interface{}, dstType string) interface{}{
 		switch dstType {
 		case TIntSlice: // []string 转 []int
 			var v []int
-			for _, value := range src.([]int) {
+			for _, value := range src.([]string) {
 				v = append(v, ToType(value, TInt).(int))
 			}
 			return v
 		case TStringSlice: // []string 转 []string
 			return src
+		case TAnySlice: // []string 转 []string
+			var v []interface{}
+			for _, value := range src.([]string) {
+				v = append(v, value)
+			}
+			return v
 		}
 	case TAnySlice:
 		switch dstType {
