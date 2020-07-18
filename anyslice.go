@@ -13,3 +13,13 @@ func (as *AnySlice) Modify(args string, value interface{}) {
 	link := Modify(args, value, *as)
 	*as = link.Reassignment().([]interface{})
 }
+
+// Check this value is in array or not.
+func (as *AnySlice) InArray(value interface{}) bool {
+	for _, v := range *as {
+		if v == value {
+			return true
+		}
+	}
+	return false
+}
