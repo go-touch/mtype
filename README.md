@@ -1,6 +1,10 @@
 ## mtype ##
-### mtype 可实现数据类型判断与转换. 内置模法类型,轻松实现复杂的数据结构增删改查.###
-
+#### 功能支持
+- [数据类型判断](#获取类型)
+- [数据类型转换](#类型转换)
+- 内置魔法类型, 对复杂的数据结构字段值实现增删改查
+ - [mtype.AnyMap](#mtype.AnyMap)
+ - [mtype.AnySlice](#mtype.AnySlice)
 #### 支持类型
 ```go
 // Define const.
@@ -24,11 +28,11 @@ const (
 	TUnknown        = "unknown"        // 类型: unknown
 )
 ```
-##### 获取类型. (对应上面定义的类型字符串)
+##### <a id="获取类型">获取类型</a> (对应上面定义的类型字符串)
 ```go
 func GetType(value interface{}) string
 ```
-##### 转换成对应类型. 参数 src:被转换的类型值 dstType:将要转换的类型(参考上面定义类型)
+##### 转换成对应类型 参数 src:被转换的类型值 dstType:将要转换的类型(参考上面定义类型)
 ```go
 func ToType(src interface{}, dstType string) interface{}
 
@@ -38,7 +42,7 @@ mtype.ToType("10", mtype.TInt) // 字符串10转换成int
 ```go
 Note: 该方法为底层转换方法, 转化后的值还是以 interface{} 形式返回. 如要实现真正转换, 请参考下面 *mtype.AnyValue
 ```
-#### 类型转换, 使用 *mtype.AnyValue（对于不确定类型interfa{}比较适用)
+#### <a id="类型转换">类型转换</a> 使用 *mtype.AnyValue（对于不确定类型interfa{}比较适用)
 ##### 1. 获取 *mtype.AnyValue. 参数 value: interface{} (即被转换的值, 可传任意类型值)
 ```go
 func Eval(value interface{}) *AnyValue
@@ -91,7 +95,7 @@ stringMap := mtype.Eval("master": map[string]interface{}{
 	"port": "3306",
 }).ToStringMap()
 ```
-#### 内置类型 mtype.AnyMap
+#### <a id="mtype.AnyMap">内置类型 mtype.AnyMap</a>
 ##### 1. 使用方法
 ```go
 第一种方法:
@@ -144,7 +148,7 @@ fmt.Println(v) // 输出 3389
 v := anyMap.Select()
 fmt.Println(v) // 输出 map[database:map[master:map[host:127.0.0.1 port:3389] salve:map[host:127.0.0.1 port:3307]]]
 ```
-#### 内置类型 mtype.AnySlice
+#### <a id="mtype.AnySlice">内置类型 mtype.AnySlice</a>
 ```go
 与 mtype.AnyMap使用方法一致
 ```
