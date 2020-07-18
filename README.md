@@ -124,17 +124,17 @@ anyMap的数据结构如下(使用json演示):
 	}
 }
 ```
-##### 2. 查询字段值 参数 args: 任意 . 拼接字符串(为空返回自身值)
+##### 2. 查询字段值 参数 args: 任意 . 拼接字符串 (为空则返回 value = 自身值的 *AnyValue)
 ```go
 func (am *AnyMap) Select(args ...string) *AnyValue
 ```
 ```go
 调用示例:
 v := anyMap.Select("database.master.port")
-fmt.Println(v) // 输出 3306
+fmt.Println(v.ToString()) // 输出 3306
 
 v := anyMap.Select()
-fmt.Println(v) // 输出 map[database:map[master:map[host:127.0.0.1 port:3306] salve:map[host:127.0.0.1 port:3307]]]
+fmt.Println(v.ToAnyMap()) // 输出 map[database:map[master:map[host:127.0.0.1 port:3306] salve:map[host:127.0.0.1 port:3307]]]
 ```
 ##### 3. 插入或更新字段值 参数 args: 任意 . 拼接字符串 value: 要插入或更新的值
 ```go
