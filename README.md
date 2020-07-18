@@ -1,10 +1,10 @@
 ## mtype ##
 #### 功能支持
-- [数据类型判断](#获取类型)
-- [数据类型转换](#类型转换)
+- [获取类型](#获取类型)
+- [类型转换](#类型转换)
 - 内置魔法类型, 对复杂的数据结构字段值实现增删改查
- - [mtype.AnyMap](#mtype.AnyMap)
- - [mtype.AnySlice](#mtype.AnySlice)
+ 	- [mtype.AnyMap](#mtype.AnyMap)
+ 	- [mtype.AnySlice](#mtype.AnySlice)
 #### 支持类型
 ```go
 // Define const.
