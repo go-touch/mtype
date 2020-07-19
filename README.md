@@ -126,27 +126,27 @@ anyMap的数据结构如下(使用json演示):
 ```
 ##### 2. 查询字段值 参数 args: 任意 . 拼接字符串 (为空则返回 value = 自身值的 *AnyValue)
 ```go
-func (am *AnyMap) Select(args ...string) *AnyValue
+func (am *AnyMap) Get(args ...string) *AnyValue
 ```
 ```go
 调用示例:
-v := anyMap.Select("database.master.port")
+v := anyMap.Get("database.master.port")
 fmt.Println(v.ToString()) // 输出 3306
 
-v := anyMap.Select()
+v := anyMap.Get()
 fmt.Println(v.ToAnyMap()) // 输出 map[database:map[master:map[host:127.0.0.1 port:3306] salve:map[host:127.0.0.1 port:3307]]]
 ```
 ##### 3. 插入或更新字段值 参数 args: 任意 . 拼接字符串 value: 要插入或更新的值
 ```go
-func (am *AnyMap) Modify(args string, value interface{})
+func (am *AnyMap) Set(args string, value interface{})
 ```
 ```go
 调用示例:
-anyMap.Modify("database.master.port",3389)
-v := anyMap.Select("database.master.port")
+anyMap.Set("database.master.port",3389)
+v := anyMap.Get("database.master.port")
 fmt.Println(v) // 输出 3389
 
-v := anyMap.Select()
+v := anyMap.Get()
 fmt.Println(v) // 输出 map[database:map[master:map[host:127.0.0.1 port:3389] salve:map[host:127.0.0.1 port:3307]]]
 ```
 #### <a id="mtype.AnySlice">内置类型 mtype.AnySlice</a>
@@ -169,6 +169,6 @@ anySlice的数据结构如下(使用json演示):
 ]
 ```
 ```go
-Note: key值索引直接使用字符串数值, 例:anySlice.Select("0.master.port")
+Note: key值索引直接使用字符串数值, 例:anySlice.Get("0.master.port")
 ```
 #### 内置类型 更多持续更新中...

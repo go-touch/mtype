@@ -3,15 +3,15 @@ package mtype
 // Built-in type.
 type AnySlice []interface{}
 
-// Select value.
-func (as *AnySlice) Select(args ...string) *AnyValue {
-	return Select(*as, args...)
+// Set value.
+func (as *AnySlice) Set(args string, value interface{}) {
+	link := Set(args, value, *as)
+	*as = link.Reassignment().([]interface{})
 }
 
-// Insert | Update value.
-func (as *AnySlice) Modify(args string, value interface{}) {
-	link := Modify(args, value, *as)
-	*as = link.Reassignment().([]interface{})
+// Get value.
+func (as *AnySlice) Get(args ...string) *AnyValue {
+	return Get(*as, args...)
 }
 
 // Check this value is in array or not.
