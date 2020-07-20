@@ -144,10 +144,10 @@ func (am *AnyMap) Set(args string, value interface{})
 调用示例:
 anyMap.Set("database.master.port",3389)
 v := anyMap.Get("database.master.port")
-fmt.Println(v) // 输出 3389
+fmt.Println(v.ToString()) // 输出 3389
 
 v := anyMap.Get()
-fmt.Println(v) // 输出 map[database:map[master:map[host:127.0.0.1 port:3389] salve:map[host:127.0.0.1 port:3307]]]
+fmt.Println(v.ToAnyMap()) // 输出 map[database:map[master:map[host:127.0.0.1 port:3389] salve:map[host:127.0.0.1 port:3307]]]
 ```
 #### <a id="mtype.AnySlice">内置类型 mtype.AnySlice</a>
 ```go
