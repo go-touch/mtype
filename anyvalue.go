@@ -134,3 +134,17 @@ func (av *AnyValue) ToAnySlice() []interface{} {
 	}
 	return value
 }
+
+// Convert value to type of []map[string]interface{} .
+func (av *AnyValue) ToAnyMapSlice() []map[string]interface{} {
+	value := make([]map[string]interface{}, 0)
+	switch GetType(av.value) {
+	case TStringMapSlice:
+		for k, v := range av.value.([]map[string]string) {
+			value[k] = ToType(v, TAnyMap).(map[string]interface{})
+		}
+	case TAnyMapSlice:
+		value = av.value.([]map[string]interface{})
+	}
+	return value
+}
