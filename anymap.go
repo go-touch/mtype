@@ -1,6 +1,6 @@
 package mtype
 
-// Built-in type.
+// Built-in type: map[string]interface{}.
 type AnyMap map[string]interface{}
 
 // Set value.

@@ -1,6 +1,6 @@
 package mtype
 
-// Built-in type.
+// Built-in type: []interface{}.
 type AnySlice []interface{}
 
 // Set value.
