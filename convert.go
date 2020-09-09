@@ -8,6 +8,7 @@ import (
 // Define const.
 const (
 	TInt            = "Int"            // 类型: int
+	TInt64          = "Int64"          // 类型: int
 	TByte           = "Byte"           // 类型: byte
 	TRune           = "Rune"           // 类型: rune
 	TFloat64        = "Float64"        // 类型: float64
@@ -31,6 +32,8 @@ func GetType(value interface{}) string {
 	switch value.(type) {
 	case int:
 		return TInt
+	case int64:
+		return TInt64
 	case byte:
 		return TByte
 	case rune:
@@ -117,6 +120,10 @@ func ToType(src interface{}, dstType string) interface{} {
 			if v, err := strconv.Atoi(src.(string)); err != nil {
 				return 0
 			} else {
+				return v
+			}
+		case TInt64: // string 转 int64
+			if v, err := strconv.ParseInt(src.(string), 10, 64); err == nil {
 				return v
 			}
 		case TByte: // string 转 byte

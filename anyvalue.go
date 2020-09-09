@@ -37,6 +37,14 @@ func (av *AnyValue) ToInt() int {
 	return 0
 }
 
+// Convert value to type of int.
+func (av *AnyValue) ToInt64() int64 {
+	if dstValue := ToType(av.value, TInt64); dstValue != nil {
+		return dstValue.(int64)
+	}
+	return 0
+}
+
 // Convert value to type of byte.
 func (av *AnyValue) ToByte() byte {
 	if dstValue := ToType(av.value, TByte); dstValue != nil {
